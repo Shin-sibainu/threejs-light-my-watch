@@ -29,12 +29,16 @@ scene.add(camera);
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 // ambientLight.color = new THREE.Color(0xffffff)
 // ambientLight.intensity = 0.5;
-scene.add(ambientLight);
+// scene.add(ambientLight);
 // gui.add(ambientLight, "intensity").min(0).max(1).step(0.001);
 
 // const directionalLight = new THREE.DirectionalLight(0x0fffff, 0.5);
 // directionalLight.position.set(1, 0.55, 0);
 // scene.add(directionalLight);
+
+const hemiSphereLight = new THREE.HemisphereLight(0x0ffff0, 0xffff00, 1);
+hemiSphereLight.position.set(1, 0.25, 0);
+scene.add(hemiSphereLight);
 
 //マテリアル
 const material = new THREE.MeshStandardMaterial();
