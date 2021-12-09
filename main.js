@@ -42,13 +42,22 @@ scene.add(directionalLight);
 
 const pointLight = new THREE.PointLight(0xff4000, 0.7, 10, 2);
 pointLight.position.set(-1, 0, 1.5);
-scene.add(pointLight);
+// scene.add(pointLight);
 
 //MeshstarndardMaterialとMeshPhysicalMaterialでしか機能しない。
 const rectAreaLight = new THREE.RectAreaLight(0x4eff00, 1, 3, 4);
 rectAreaLight.position.set(1.5, 0, 1);
 rectAreaLight.lookAt(0, 0, 0);
-scene.add(rectAreaLight);
+// scene.add(rectAreaLight);
+
+//spotlight
+const spotLight = new THREE.SpotLight(0xffffff, 0.5, 6, Math.PI * 0.1, 0.1, 1);
+spotLight.position.set(0, 2, 3);
+scene.add(spotLight);
+
+console.log(spotLight.target);
+spotLight.target.position.x = 1;
+scene.add(spotLight.target);
 
 //マテリアル
 const material = new THREE.MeshStandardMaterial();
