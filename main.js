@@ -32,17 +32,23 @@ const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 // scene.add(ambientLight);
 // gui.add(ambientLight, "intensity").min(0).max(1).step(0.001);
 
-// const directionalLight = new THREE.DirectionalLight(0x0fffff, 0.5);
-// directionalLight.position.set(1, 0.55, 0);
-// scene.add(directionalLight);
+const directionalLight = new THREE.DirectionalLight(0x0fffff, 0.5);
+directionalLight.position.set(1, 0.55, 0);
+scene.add(directionalLight);
 
 // const hemiSphereLight = new THREE.HemisphereLight(0x0ffff0, 0xffff00, 1);
 // hemiSphereLight.position.set(1, 0.25, 0);
 // scene.add(hemiSphereLight);
 
-// const pointLight = new THREE.PointLight(0xff4000, 0.7, 10, 2);
-// pointLight.position.set(-1, 0, 1.5);
-// scene.add(pointLight);
+const pointLight = new THREE.PointLight(0xff4000, 0.7, 10, 2);
+pointLight.position.set(-1, 0, 1.5);
+scene.add(pointLight);
+
+//MeshstarndardMaterialとMeshPhysicalMaterialでしか機能しない。
+const rectAreaLight = new THREE.RectAreaLight(0x4eff00, 1, 3, 4);
+rectAreaLight.position.set(1.5, 0, 1);
+rectAreaLight.lookAt(0, 0, 0);
+scene.add(rectAreaLight);
 
 //マテリアル
 const material = new THREE.MeshStandardMaterial();
