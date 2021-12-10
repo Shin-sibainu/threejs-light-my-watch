@@ -56,7 +56,7 @@ spotLight.position.set(0, 2, 3);
 scene.add(spotLight);
 
 console.log(spotLight.target);
-spotLight.target.position.x = 1;
+spotLight.target.position.x = -1;
 scene.add(spotLight.target);
 
 //マテリアル
