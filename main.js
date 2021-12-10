@@ -1,5 +1,6 @@
 import * as THREE from "./build/three.module.js";
 import { OrbitControls } from "./controls/OrbitControls.js";
+// import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js'
 
 //UIデバッグ
 const gui = new dat.GUI();
@@ -36,19 +37,19 @@ const directionalLight = new THREE.DirectionalLight(0x0fffff, 0.5);
 directionalLight.position.set(1, 0.55, 0);
 scene.add(directionalLight);
 
-// const hemiSphereLight = new THREE.HemisphereLight(0x0ffff0, 0xffff00, 1);
-// hemiSphereLight.position.set(1, 0.25, 0);
-// scene.add(hemiSphereLight);
+const hemiSphereLight = new THREE.HemisphereLight(0x0ffff0, 0xffff00, 0.5);
+hemiSphereLight.position.set(1, 0.25, 2);
+scene.add(hemiSphereLight);
 
-const pointLight = new THREE.PointLight(0xff4000, 0.7, 10, 2);
+const pointLight = new THREE.PointLight(0xff4000, 0.3, 10, 2);
 pointLight.position.set(-1, 0, 1.5);
-// scene.add(pointLight);
+scene.add(pointLight);
 
 //MeshstarndardMaterialとMeshPhysicalMaterialでしか機能しない。
-const rectAreaLight = new THREE.RectAreaLight(0x4eff00, 1, 3, 4);
+const rectAreaLight = new THREE.RectAreaLight(0x4eff00, 0.5, 3, 4);
 rectAreaLight.position.set(1.5, 0, 1);
 rectAreaLight.lookAt(0, 0, 0);
-// scene.add(rectAreaLight);
+scene.add(rectAreaLight);
 
 //spotlight
 const spotLight = new THREE.SpotLight(0xffffff, 0.5, 6, Math.PI * 0.1, 0.1, 1);
@@ -58,6 +59,31 @@ scene.add(spotLight);
 console.log(spotLight.target);
 spotLight.target.position.x = -1;
 scene.add(spotLight.target);
+
+const hemisphereLightHelper = new THREE.HemisphereLightHelper(
+  hemiSphereLight,
+  0.2
+);
+scene.add(hemisphereLightHelper);
+
+const directionalLightHelper = new THREE.DirectionalLightHelper(
+  directionalLight,
+  0.2
+);
+scene.add(directionalLightHelper);
+
+const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.2);
+scene.add(pointLightHelper);
+
+const spotLightHelper = new THREE.SpotLightHelper(spotLight);
+scene.add(spotLightHelper);
+window.requestAnimationFrame(() => {
+  spotLightHelper.update();
+});
+
+//これは例外(importする必要あり。)
+const rectAreaLightHelper = new RectAreaLightHelper(rectAreaLight);
+scene.add(rectAreaLightHelper);
 
 //マテリアル
 const material = new THREE.MeshStandardMaterial();
